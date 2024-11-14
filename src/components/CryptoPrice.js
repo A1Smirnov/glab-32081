@@ -1,19 +1,23 @@
-// src/components/CryptoPrice.js
-import React, { useState, useEffect } from 'react';
+// ./src/components/CryptoPrice.js
+
+import { useState, useEffect } from "react";
 
 const CryptoPrice = ({ coin, currency }) => {
   const [price, setPrice] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchPrice = async () => {
       try {
-        const response = await fetch(`/api/price/${coin}/${currency}`);
+        const response = await fetch(
+          `https://api.coingecko.com/api/v3/simple/price?ids=${coin}&vs_currencies=${currency}`
+        );
         const data = await response.json();
         setPrice(data[coin][currency]);
         setLoading(false);
-      } catch (error) {
-        console.error('Error fetching price:', error);
+      } catch (e) {
+        setError(e);
         setLoading(false);
       }
     };
@@ -22,12 +26,17 @@ const CryptoPrice = ({ coin, currency }) => {
   }, [coin, currency]);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error fetching price: {error.message}</div>;
   }
 
   return (
     <div>
-      <h3>{coin.toUpperCase()} Price in {currency.toUpperCase()}: {price}</h3>
+      <h3>{coin} Price</h3>
+      <p>{price} {currency.toUpperCase()}</p>
     </div>
   );
 };

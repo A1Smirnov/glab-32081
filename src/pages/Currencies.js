@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 
 export default function Currencies() {
   const currencies = [
-    { name: "Bitcoin", symbol: "BTC" },
-    { name: "Litecoin", symbol: "LTC" },
-    { name: "Ethereum", symbol: "ETH" },
-    { name: "Ethereum Classic", symbol: "ETC" },
-    { name: "Stellar Lumens", symbol: "XLM" },
-    { name: "Dash", symbol: "DASH" },
-    { name: "Ripple", symbol: "XRP" },
-    { name: "Zcash", symbol: "ZEC" },
+    { name: "Bitcoin", symbol: "bitcoin" },  // Символы должны быть в формате, который ожидает API CoinGecko
+    { name: "Litecoin", symbol: "litecoin" },
+    { name: "Ethereum", symbol: "ethereum" },
+    { name: "Ethereum Classic", symbol: "ethereum-classic" },
+    { name: "Stellar Lumens", symbol: "stellar" },
+    { name: "Dash", symbol: "dash" },
+    { name: "Ripple", symbol: "ripple" },
+    { name: "Zcash", symbol: "zcash" },
   ];
 
   return (
