@@ -1,11 +1,11 @@
 // ./src/App.js
 
 import "./style.css";
-import Nav from "./components/Nav";
+import Nav from "./components/Nav.js";
 import { Route, Routes } from "react-router-dom";
-import Currencies from "./pages/Currencies";
-import Main from "./pages/Main";
-import Price from "./pages/Price";
+import Currencies from "./pages/Currencies.js";
+import Main from "./pages/Main.js";
+import Price from "./pages/Price.js";
 
 export default function App() {
     return (
