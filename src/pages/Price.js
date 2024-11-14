@@ -1,18 +1,20 @@
 // ./src/components/Price.js
-
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 export default function Price() {
   const params = useParams();
-  const symbol = params.symbol;
-  const url = `http://localhost:3001/api/price/${symbol}`;
+  const symbol = params.symbol;  // Получаем символ криптовалюты из URL
+  const url = `http://localhost:3001/api/price/${symbol}`;  // URL на сервере
 
   const [coin, setCoin] = useState(null);
 
   const getCoin = async () => {
     try {
       const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
       const data = await response.json();
       setCoin(data);
     } catch (e) {
@@ -27,9 +29,7 @@ export default function Price() {
   const loaded = () => {
     return (
       <div>
-        <h1>
-          {coin.asset_id_base}/{coin.asset_id_quote}
-        </h1>
+        <h1>{coin.asset_id_base}/{coin.asset_id_quote}</h1>
         <h2>{coin.rate}</h2>
       </div>
     );
